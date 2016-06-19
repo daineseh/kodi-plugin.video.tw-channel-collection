@@ -53,9 +53,12 @@ elif mode[0] == 'play':
     }
 
     with youtube_dl.YoutubeDL(opts) as ydl:
-        resource_uri = ydl.extract_info(url).get('url')
+        info = ydl.extract_info(url)
+        resource_uri = info.get('url')
         if not resource_uri:
-            entries = ydl.extract_info(url).get('entries')
-            resource_uri = entries[-1].get('url')
+            vid = info.get('format').split()[0]
+            for item in info.get('formats'):
+                if vid == item.get('format_id'):
+                    resource_uri = item.get('url')
     xbmc.Player().play(resource_uri)
 
