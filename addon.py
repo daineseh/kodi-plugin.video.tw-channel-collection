@@ -56,9 +56,13 @@ elif mode[0] == 'play':
         info = ydl.extract_info(url)
         resource_uri = info.get('url')
         if not resource_uri:
-            vid = info.get('format').split()[0]
+            vid = info.get('format_id')
             for item in info.get('formats'):
                 if vid == item.get('format_id'):
                     resource_uri = item.get('url')
-    xbmc.Player().play(resource_uri)
+    if resource_uri:
+        xbmc.Player().play(resource_uri)
+    else:
+        xbmc.log('[Youtube url]: %s,' % url, 0)
+        xbmcgui.Dialog().notification("Oops!", "找不到影片串流", xbmcgui.NOTIFICATION_ERROR)
 
