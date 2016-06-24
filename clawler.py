@@ -11,13 +11,34 @@ import urlparse
 YOUTUBE_URL = 'https://www.youtube.com'
 BUILD_YOUTUBE_URL = lambda x: urlparse.urljoin(YOUTUBE_URL, x).encode('utf8')
 
-CHANNELS = OrderedDict([
-            ("PeoPo 公民新聞", "https://www.youtube.com/user/peoponews/videos"),
-            ("PTS 台灣公共電視", "https://www.youtube.com/user/pts/videos"),
-            ("The News Lens 關鍵評論網", "https://www.youtube.com/user/thenewslens/videos"),
-            ("公視新聞網", "https://www.youtube.com/user/PNNPTS/videos"),
-            ("台灣宏觀電視", "https://www.youtube.com/user/macroview/videos")
-           ])
+NEWS_CHANNELS = OrderedDict([
+                ("PeoPo 公民新聞", "https://www.youtube.com/user/peoponews/videos"),
+                ("PTS 台灣公共電視", "https://www.youtube.com/user/pts/videos"),
+                ("The News Lens 關鍵評論網", "https://www.youtube.com/user/thenewslens/videos"),
+                ("公視新聞網", "https://www.youtube.com/user/PNNPTS/videos"),
+                ("台灣宏觀電視", "https://www.youtube.com/user/macroview/videos")
+                ])
+
+KNOWLEDGE_CHANNELS = OrderedDict([
+                     ("MIT 台灣誌", "https://www.youtube.com/channel/UCI9sHrvB331ZbUyozAbLCNw/videos"),
+                     ("天下雜誌video", "https://www.youtube.com/user/CWTV/videos"),
+                     ("公共電視-我們的島", "https://www.youtube.com/user/ourislandTAIWAN/videos"),
+                     ("公共電視-獨立特派員", "https://www.youtube.com/user/news50402/videos"),
+                     ("公共電視-紀錄觀點", "https://www.youtube.com/user/ptsviewpoint/videos"),
+                     ("遠見雜誌", "https://www.youtube.com/user/gvm2517/videos"),
+                     ])
+
+COMMENT_CHANNELS = OrderedDict([
+                   ("NGOV 觀點", "https://www.youtube.com/user/NGOVIEW/videos"),
+                   ("PTS 有話好說", "https://www.youtube.com/user/PTSTalk/videos"),
+                   ("公視南部開講", "https://www.youtube.com/user/ptssouthtalk/videos"),
+                   ])
+
+LIFE_CHANNELS = OrderedDict([
+                ("Cheers TV 快樂工作人", "https://www.youtube.com/channel/UCuNurVWBBLHxGs7oGa5ZcvA/videos"),
+                ("Taiwan Bar", "https://www.youtube.com/channel/UCRNsHFT7BFoAPBcuAa5sgEQ/videos"),
+                ("老外看中國、老外看台灣 | 郝毅博 Ben Hedges", "https://www.youtube.com/user/Laowaikanzhongguo/videos"),
+                ])
 
 
 class Channel:

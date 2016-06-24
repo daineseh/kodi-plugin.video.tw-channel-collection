@@ -7,7 +7,7 @@ import xbmcgui
 import xbmcplugin
 import youtube_dl
 
-from clawler import CHANNELS, Channel
+from clawler import NEWS_CHANNELS, KNOWLEDGE_CHANNELS, COMMENT_CHANNELS, LIFE_CHANNELS, Channel
 
 
 base_url = sys.argv[0]
@@ -16,21 +16,43 @@ args = urlparse.parse_qs(sys.argv[2][1:])
 
 xbmcplugin.setContent(addon_handle, 'movies')
 
+
 def build_url(query):
     return base_url + '?' + urllib.urlencode(query)
 
 def page_number(url):
     return url.split('-')[-1].split('.')[0]
 
+def build_items(channel, url_str, color='lightgray'):
+    url = build_url({'mode': 'channel', 'folder_name': url_str})
+    li = xbmcgui.ListItem('[COLOR %s]%s[/COLOR]' % (color, channel))
+    obj = Channel(url_str)
+    li.setArt({'thumb': obj.get_logo(), 'icon': obj.get_logo(), 'fanart': obj.get_logo()})
+    xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True)
+
+def banner_item(title, color='lightgray'):
+    li = xbmcgui.ListItem('[COLOR %s]%s[/COLOR]' % (color, title))
+    xbmcplugin.addDirectoryItem(handle=addon_handle, url=None, listitem=li, isFolder=False)
+
+
 mode = args.get('mode', None)
 
 if mode is None:
-    for channel, _url in CHANNELS.iteritems():
-        url = build_url({'mode': 'channel', 'folder_name': _url})
-        li = xbmcgui.ListItem('[COLOR white]%s[/COLOR]' % channel)
-        obj = Channel(_url)
-        li.setArt({'thumb': obj.get_logo(), 'icon': obj.get_logo(), 'fanart': obj.get_logo()})
-        xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li, isFolder=True)
+    banner_item('新聞', 'gold')
+    for channel, _url in NEWS_CHANNELS.iteritems():
+        build_items(channel, _url)
+
+    banner_item('知識', 'gold')
+    for channel, _url in KNOWLEDGE_CHANNELS.iteritems():
+        build_items(channel, _url)
+
+    banner_item('談論', 'gold')
+    for channel, _url in COMMENT_CHANNELS.iteritems():
+        build_items(channel, _url)
+
+    banner_item('生活', 'gold')
+    for channel, _url in LIFE_CHANNELS.iteritems():
+        build_items(channel, _url)
     xbmcplugin.endOfDirectory(addon_handle)
 
 elif mode[0] == 'channel':
