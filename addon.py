@@ -72,6 +72,7 @@ elif mode[0] == 'play':
         'forceurl': True,
         'quiet': True,
         'simulate': True,
+        'nocheckcertificate': True,
     }
 
     with youtube_dl.YoutubeDL(opts) as ydl:
