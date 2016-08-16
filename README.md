@@ -1,5 +1,6 @@
 # tw-channel-collection video plugin for KODI
 #### [YouTube 台灣頻道選輯] 是 [KODI](https://kodi.tv/download/) 的外掛，可以在 KODI 裡觀看搜集的資源
+![alt tag](https://github.com/daineseh/kodi-plugin.video.tw-channel-collection/raw/master/screen.gif)
 ---
 安裝
 ----
